@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #e6aeae;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Student Grades</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Course and Year</th>
+            <th>Prelim</th>
+            <th>Midterm</th>
+            <th>Pre-final</th>
+            <th>Final</th>
+            <th>Average Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Donna</td>
+            <td>Biglaen</td>
+            <td>Buates</td>
+            <td>BS Psychology - Year 1</td>
+            <td>89</td>
+            <td>93</td>
+            <td>87</td>
+            <td>95</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Axel</td>
+            <td>Bisa</td>
+            <td>Biglaen</td>
+            <td>BS Nursing - Year 2</td>
+            <td>95</td>
+            <td>88</td>
+            <td>90</td>
+            <td>89</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Denicelle</td>
+            <td>Buates</td>
+            <td>Biglaen</td>
+            <td>BS Hospitality Management - Year 4</td>
+            <td>90</td>
+            <td>99</td>
+            <td>88</td>
+            <td>94</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    var table = document.querySelector('table');
+    var rows = table.rows;
+
+    for (var i = 1; i < rows.length; i++) {
+        var row = rows[i];
+        var sum = 0;
+        for (var j = 4; j < 8; j++) {
+            sum += parseInt(row.cells[j].textContent);
+        }
+        var average = sum / 4;
+        row.cells[8].textContent = average.toFixed(2);
+    }
+
+    var tbody = table.querySelector('tbody');
+    var rowsArray = Array.from(tbody.rows);
+    rowsArray.sort(function(row1, row2) {
+        var grade1 = parseFloat(row1.cells[8].textContent);
+        var grade2 = parseFloat(row2.cells[8].textContent);
+        return grade2 - grade1;
+    });
+
+    for (var i = 0; i < rowsArray.length; i++) {
+        tbody.appendChild(rowsArray[i]);
+    }
+</script>
+
+</body>
+</html>
